@@ -45,6 +45,7 @@ const sample: Tour = {
 
   const legacy = encodeTour(sample, LEGACY_MAGICS[0]);
   ok('legacy magic decodes', decodeTour(legacy).id === 'unit');
+  ok('custom magic round-trip', decodeTour(encodeTour(sample, 'MYAPP'), 'MYAPP').id === 'unit');
   ok('format version byte', legacy[5] === TOUR_FMT);
 
   const bad = bytes.slice();

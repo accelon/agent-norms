@@ -225,6 +225,7 @@ evalCond(cond: string): boolean
   appName?: string;       // final scene text
   modalIds?: string[];    // ids that own Esc
   finishHtml?: string;    // override final scene
+  magic?: string;         // must match compiler magic; default TOUR1
 }
 ```
 

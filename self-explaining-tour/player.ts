@@ -14,7 +14,7 @@
  * (for `api:` conditions).
  */
 import {
-  decodeTour, fromBase64, OP,
+  decodeTour, fromBase64, OP, TOUR_MAGIC,
   type Scene, type Step, type Tour, type TourMeta,
 } from './format';
 
@@ -45,6 +45,8 @@ export interface TourOptions {
   modalIds?: string[];
   /** HTML for the final scene. */
   finishHtml?: string;
+  /** Macro magic; must match the compiler's `magic`. Default `TOUR1`. */
+  magic?: string;
 }
 
 type Phase = 'idle' | 'running' | 'waiting' | 'paused' | 'done';
@@ -55,6 +57,7 @@ let prefix = 'tour';
 let appName = 'this app';
 let modalIds: string[] = [];
 let finishHtml = '';
+let magic = TOUR_MAGIC;
 
 const PKEY = (id: string) => `${prefix}.${id}`;
 
@@ -153,7 +156,7 @@ function load(id: string): Tour | null {
   const b64 = data.blobs[id];
   if (!b64) return null;
   try {
-    t = decodeTour(fromBase64(b64));
+    t = decodeTour(fromBase64(b64), magic);
     cache.set(id, t);
     return t;
   } catch (e) {
@@ -639,6 +642,7 @@ export function initTour(a: TourApp, d: TourData, options: TourOptions = {}): vo
   appName = options.appName ?? 'this app';
   modalIds = options.modalIds ?? [];
   finishHtml = options.finishHtml ?? '';
+  magic = options.magic ?? TOUR_MAGIC;
   el('tourClose')?.addEventListener('click', () => closeTourMenu());
   el('tourBackdrop')?.addEventListener('click', () => closeTourMenu());
   el('tourX')?.addEventListener('click', () => stopTour());

@@ -128,6 +128,7 @@ var prefix = "tour";
 var appName = "this app";
 var modalIds = [];
 var finishHtml = "";
+var magic = TOUR_MAGIC;
 var PKEY = (id) => `${prefix}.${id}`;
 var app = null;
 var cur = null;
@@ -231,7 +232,7 @@ function load(id) {
   if (!b64)
     return null;
   try {
-    t = decodeTour(fromBase64(b64));
+    t = decodeTour(fromBase64(b64), magic);
     cache.set(id, t);
     return t;
   } catch (e) {
@@ -760,6 +761,7 @@ function initTour(a, d, options = {}) {
   appName = options.appName ?? "this app";
   modalIds = options.modalIds ?? [];
   finishHtml = options.finishHtml ?? "";
+  magic = options.magic ?? TOUR_MAGIC;
   el("tourClose")?.addEventListener("click", () => closeTourMenu());
   el("tourBackdrop")?.addEventListener("click", () => closeTourMenu());
   el("tourX")?.addEventListener("click", () => stopTour());
