@@ -1,0 +1,16 @@
+{
+  "name": "@yap/lossless-simplified",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lossless Traditional to Simplified display conversion (one-to-one only)",
+  "exports": {
+    ".": "./lossless.ts",
+    "./data": "./simplified-data.ts"
+  },
+  "scripts": {
+    "test": "bun run test.ts",
+    "gen": "bun run gen-lossless.ts",
+    "check": "bun run gen-lossless.ts --check"
+  }
+}
