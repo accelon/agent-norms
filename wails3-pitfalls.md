@@ -7,7 +7,7 @@
 > **讀法**：先用 §0 依症狀分類；動工前讀 §1；寫前端／Go 橋讀 §2；視窗問題讀 §3；**Windows 發佈與 SmartScreen 讀 §4**；自動更新讀 §5；完成前跑 §9 檢查表。
 > **原則**：每個坑都要「重現 → 修正 → 驗證」。**編譯成功不等於可用；本機可用不等於使用者可用。** 不要在使用者沒同意的情況下發佈、簽章、上傳或改動安全設定。
 
-> **Canonical**：[agent-norms](https://github.com/accelon/agent-norms) 的 `wails3-pitfalls.md`；本副本由 `ts/tools/sync-agent-norms.ts` 同步，不要直接改副本。
+> **Canonical**：[agent-norms](https://github.com/accelon/agent-norms) 的 `wails3-pitfalls.md`；消費端（如 adb-converter）的副本由 `ts/tools/sync-agent-norms.ts` 同步，不要直接改副本。
 
 **目錄**：0 症狀速查 · 1 建置鏈 · 2 前端／Go 橋 · 3 視窗／螢幕／DPI · 4 Windows 發佈與 SmartScreen · 5 自動更新 · 6 macOS · 7 Go 層 · 8 測試 · 9 發佈檢查表 · 10 AI agent 硬規則 · 附錄
 

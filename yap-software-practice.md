@@ -11,7 +11,7 @@
 >
 > **一句話**：**瀏覽器先能跑，exe 最後才做；依賴越少越好；漢字先當資料，不當畫面文字；介面預設暗色，可切亮色／護眼。**
 
-> **Canonical**：[agent-norms](https://github.com/accelon/agent-norms) 的 `yap-software-practice.md`；本副本由 `ts/tools/sync-agent-norms.ts` 同步，不要直接改副本。
+> **Canonical**：[agent-norms](https://github.com/accelon/agent-norms) 的 `yap-software-practice.md`；消費端（如 adb-converter）的副本由 `ts/tools/sync-agent-norms.ts` 同步，不要直接改副本。
 
 **目錄**：0 決策表 · 1 技術選擇 · 2 開發節奏 · 3 單檔 HTML · 4 Windows 環境坑 · 5 漢字處理 · 6 無損簡體 · 7 介面風格 · 8 測試 · 9 文件 · 10 檢查表 · 11 反模式
 
