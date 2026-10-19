@@ -1,0 +1,17 @@
+{
+  "name": "@yap/self-explaining-tour",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dependency-free guided tours: .tour scripts, binary macros, spotlight player",
+  "exports": {
+    ".": "./player.ts",
+    "./format": "./format.ts",
+    "./compiler": "./compiler.ts"
+  },
+  "scripts": {
+    "test": "bun run test.ts",
+    "example:build": "cd example && bun run ../build-tours.ts --config tour.config.ts",
+    "example:check": "cd example && bun run ../build-tours.ts --config tour.config.ts --check"
+  }
+}

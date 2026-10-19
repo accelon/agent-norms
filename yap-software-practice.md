@@ -29,6 +29,7 @@
 | 依賴 | 執行期 0 個 npm 依賴；工具鏈只有 Bun／Go | 7-Zip、curl 只在發佈腳本用；不進 runtime |
 | 資料 | 本機檔案；使用者挑檔或工作目錄 | 不上傳、不連網、不 telemetry |
 | 介面 | 暗色系（預設）／亮色系／護眼 | 只換 CSS 變數，版面不動 |
+| 自解說 | 非平凡 app 預設要有 guided tour | 第一次使用、新功能、demo 共用同一份 script；見 `self-explaining-tour` |
 | 簡體顯示 | 保持原樣（預設）／無損簡體／強制簡體 | **只影響顯示**，索引與搜尋仍在原文 |
 | 字型 | 系統字型堆疊，無 web font | Windows 以 Microsoft JhengHei／YaHei 為主 |
 | 測試 | 瀏覽器先行；exe 只在發佈前跑 | 改了 UI 不必重建 exe |
@@ -587,6 +588,25 @@ try {
 - 顏色不是唯一訊息：命中、錯誤、選取都要有文字或圖示輔助。
 - 對比、焦點、鍵盤、縮放 200% 都要測。
 - 不要只靠閃爍表示更新；閃爍要能停止，並有靜態徽章／文字。
+
+### 7.10 自解說（guided tour）
+
+**預設：非平凡 app 都要有 guided tour。** 不愛看說明書的人靠「看一次、跟著做」學會；同一份 script 也是 demo。
+
+- 入口要明顯：About／Help／第一次啟動／空狀態；不要藏在設置深處。
+- 第一次使用 tour 控制在 5–10 個場景；一個場景一個概念，每個場景都能單獨重播。
+- 介紹介面用 `停`（等使用者看完），**不要用固定 `等` 跑過去**。
+- 等資料用 `等頁面 count:…`／`api:…`，不要用固定 sleep。
+- 檔案選擇器、系統對話框不能自動化，用 `你來`。
+- 每個場景結尾停住，由使用者按「下一個場景」；不要自動連播。
+- 設定被 tour 改過的要還原，或明確告訴使用者怎麼改回來。
+- tour data 編譯後內嵌；`--check` 放進 CI，UI 改版時同一個 commit 更新選擇器。
+- 發佈前跑一次完整播放（`tourState().failed` 必須空）；不要只測第一個場景。
+
+模組與 skill：
+
+- <https://github.com/accelon/agent-norms/tree/main/self-explaining-tour>
+- <https://github.com/accelon/agent-norms/blob/main/skills/self-explaining-tour/SKILL.md>
 
 ---
 

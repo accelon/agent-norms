@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><title>Tour demo</title></head>
+<body>
+  <header>
+    <button id="startBtn">開始</button>
+    <button id="settingsBtn">設定</button>
+  </header>
+  <main>
+    <input id="search" placeholder="搜尋">
+    <div id="result"></div>
+    <div id="settingsBox" hidden>
+      <button id="settingsClose">關閉</button>
+    </div>
+  </main>
+  <script>
+    // Minimal behavior so the example tour has something to wait for.
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('result').textContent = '開始了';
+    });
+    document.getElementById('settingsBtn').addEventListener('click', () => {
+      document.getElementById('settingsBox').hidden = false;
+    });
+    document.getElementById('settingsClose').addEventListener('click', () => {
+      document.getElementById('settingsBox').hidden = true;
+    });
+  </script>
+</body>
+</html>

@@ -11,6 +11,8 @@ Reusable norms and modules for Yap's local tools.
 | [`yap-software-practice.md`](yap-software-practice.md) | Windows / Bun / single-file HTML / Wails3 defaults; Windows UTF-8 & Chinese pitfalls; UI themes; lossless Simplified Chinese |
 | [`wails3-pitfalls.md`](wails3-pitfalls.md) | Wails3-specific pitfalls: syso, WebView2, SmartScreen, windows/DPI, updater |
 | [`lossless-simplified/`](lossless-simplified/) | Reusable TypeScript module for **lossless Traditional → Simplified display conversion** |
+| [`self-explaining-tour/`](self-explaining-tour/) | Dependency-free guided tours: `.tour` DSL, compiler, spotlight player, shell, example |
+| [`skills/self-explaining-tour/`](skills/self-explaining-tour/SKILL.md) | Agent skill: when/how to add a self-explaining tour to a new app |
 
 ## How consumers use it
 
@@ -37,6 +39,15 @@ import { toSimplified, displayConverter, type SimMode } from './lossless';
 - **No npm dependencies.**
 - `simplified-data.ts` is generated and committed, so a build does not need `Unihan_Variants.txt`.
 - To regenerate, see [`lossless-simplified/README.md`](lossless-simplified/README.md).
+
+### `self-explaining-tour`
+
+A guided tour system for users who do not read manuals, and a repeatable demo script.
+
+- [`self-explaining-tour/README.md`](self-explaining-tour/README.md) — API, DSL, integration, tests.
+- [`skills/self-explaining-tour/SKILL.md`](skills/self-explaining-tour/SKILL.md) — the agent workflow (read this first when adding a tour).
+- Copy the folder into the app; paste `shell.html`/`shell.css`; implement `TourApp`; write `tour.config.ts` + `tours/*.tour`; run the compiler with `--check`.
+- No npm dependencies. The tour data is compiled to base64 and embedded, so single-file/`file://` builds still work.
 
 ### `adb-converter` sync
 
