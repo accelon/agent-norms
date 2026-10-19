@@ -661,6 +661,7 @@ function stopTour() {
   pointSel = null;
   showBubble(false);
 }
+var escapeHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 function renderMenu() {
   const list = el("tourList");
   if (!list)
@@ -668,7 +669,7 @@ function renderMenu() {
   list.innerHTML = data.index.map((t) => {
     const done = tourProgress(t.id);
     const label = done > 0 && done < t.scenes ? `繼續（${done + 1} / ${t.scenes}）` : "開始";
-    return `<div class="tourRow" data-id="${t.id}">` + `<div class="tourName">${t.title}</div>` + `<div class="tourIntro">${t.intro}</div>` + `<div class="tourMeta">${t.scenes} 個場景 · ${t.steps} 步${t.require ? " · 需要 " + t.require : ""}</div>` + `<div class="tourActs"><button type="button" class="primary" data-play="1">${label}</button>` + (done > 0 ? '<button type="button" data-restart="1">從頭</button>' : "") + "</div></div>";
+    return `<div class="tourRow" data-id="${escapeHtml(t.id)}">` + `<div class="tourName">${escapeHtml(t.title)}</div>` + `<div class="tourIntro">${escapeHtml(t.intro)}</div>` + `<div class="tourMeta">${t.scenes} 個場景 · ${t.steps} 步${t.require ? " · 需要 " + escapeHtml(t.require) : ""}</div>` + `<div class="tourActs"><button type="button" class="primary" data-play="1">${label}</button>` + (done > 0 ? '<button type="button" data-restart="1">從頭</button>' : "") + "</div></div>";
   }).join("");
   list.querySelectorAll(".tourRow").forEach((row) => {
     const id = row.dataset.id ?? "";
