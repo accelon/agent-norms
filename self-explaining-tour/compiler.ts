@@ -129,7 +129,7 @@ function parseStep(
   syntax: TourSyntax,
   err: (m: string) => void,
 ): Step | null {
-  const aliases = syntax.aliases ?? DEFAULT_ALIASES;
+  const aliases = { ...DEFAULT_ALIASES, ...(syntax.aliases ?? {}) };
   const setKeys = setOf(syntax.setKeys);
   const callNames = setOf(syntax.callNames);
   const tabNames = setOf(syntax.tabNames);
