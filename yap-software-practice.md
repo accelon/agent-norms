@@ -727,10 +727,7 @@ Format-Hex .\file.txt | Select-Object -First 2
 ## 附錄 B：相關文件
 
 - [wails3-pitfalls.md](wails3-pitfalls.md) — Wails3 專屬坑（syso、WebView2、SmartScreen、視窗、更新）。
-- [MACOS.md](MACOS.md) — macOS 版建置與公證（如果要做跨平台）。
-- [DEPLOY.md](DEPLOY.md) — 本專案的部署與更新 runbook。
-- [ACCELON26-HANDOVER.md](ACCELON26-HANDOVER.md) — 本專案的實作與驗收紀錄。
-- [architecture.md](architecture.md) — 本專案的分層與資料流。
+- 各專案的 `README`／`MACOS.md`／`DEPLOY.md`／`ACCELON26-HANDOVER.md`／`architecture.md` — 專案專屬的建置、部署、實作與驗收 runbook；不在本 repo。
 
 ---
 
