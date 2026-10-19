@@ -49,6 +49,8 @@ If the app already has theme variables (`--panel`, `--fg`, `--accent`, …), the
 
 The player never imports app panels. Give it a `TourApp`:
 
+> Call `initTour` **once**, after the shell is in the DOM. It binds listeners by the shell ids and renders the menu.
+
 ```ts
 import { initTour, startTour } from './tour/player';
 import { TOUR_BLOBS, TOUR_INDEX } from './tour-data';
