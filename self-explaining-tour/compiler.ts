@@ -9,8 +9,8 @@
  * A consumer supplies a `TourCompilerConfig` (paths + allow-lists) and calls
  * `compileTours()`. See `build-tours.ts` for the CLI wrapper.
  */
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { encodeTour, toBase64, OP, type Tour, type Scene, type Step, type TourMeta } from './format';
 
 /** Script syntax allow-lists. Empty/undefined = don't validate that dimension. */
@@ -400,5 +400,7 @@ ${Object.entries(blobs).map(([id, b]) => `  ${JSON.stringify(id)}: '${b}',`).joi
 
 /** Write the generated file (used by the CLI). */
 export function writeCompiled(result: CompileResult, outFile: string): void {
-  writeFileSync(resolve(outFile), result.text, 'utf8');
+  const file = resolve(outFile);
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, result.text, 'utf8');
 }
