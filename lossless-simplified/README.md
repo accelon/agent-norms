@@ -66,6 +66,7 @@ bun run gen-lossless.ts --check --src ... --out ...
 - The generator reads `kSimplifiedVariant`, `kTraditionalVariant`, `kZVariant`, `kSemanticVariant`, `kSpecializedSemanticVariant`.
 - Current output: 2641 lossless pairs / 2810 force pairs.
 - Do not hand-edit `simplified-data.ts`; rerun the generator.
+- Windows console may show Chinese as mojibake; that does not affect the UTF-8 output file. Run `chcp 65001` first if you want readable console logs.
 
 ## Test
 
