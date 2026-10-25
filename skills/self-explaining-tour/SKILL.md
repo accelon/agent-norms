@@ -20,7 +20,8 @@ Do **not** use a tour to replace clear labels, empty states, or inline help. A t
 
 ## Non-negotiables
 
-1. **The tour must be replayable** from a visible entry ("操作導覽" / "Take a tour" / ▶).
+1. **The tour must be replayable** from a visible entry ("操作導覽" / "Take a tour" / 🦮 when the UI is icon-only — see step 9).
+
 2. **Every scene stands alone.** Users can replay one scene or resume mid-tour.
 3. **Use `停` for UI explanations, not `等`.** Let the user look; do not auto-run past a panel.
 4. **Use `等頁面` for async data, never fixed `等`.** Fixed sleeps are random failures.
@@ -163,6 +164,25 @@ Put "操作導覽 / Take a tour" somewhere discoverable:
 
 Do not hide it in a settings submenu.
 
+**If the UI is icon-only, the icon is the guide dog 🦮** (作者 2026-10-25):
+
+- it sits **immediately after the primary action** (usually save) on the same row —
+  a place the user already looks, so the entry needs no label to be found;
+- `id="tourEntry"`, `aria-label="操作導覽"` and `title="操作導覽（跟著做一次就會用）"`
+  so the emoji-only button still has a name for screen readers and a tooltip for everyone else;
+- same size and style as the neighbouring icon buttons; keep the emoji at the icon font size;
+- ❌ `▶` / `🎬` / `?` read as "play a video / demo" or "help page" and get ignored;
+- ❌ no text label next to it (an icon row with one text link breaks the rhythm).
+
+Why a dog: it is the one glyph that says *someone will lead you step by step* without words,
+it is not already used for "play", "help" or "settings", and users remember it after one visit.
+Same reasoning as a guide dog at a crossing: it does not explain the route, it walks it with you.
+
+**First run: one line, never auto-start.** Point at the entry
+("第一次用？按右邊的 🦮 一分鐘走一遍") from a toast or the empty state, only while the tour has
+never been started. Auto-starting steals the first impression and hides the screen the tour is
+supposed to explain. Persist "seen" when the tour **starts**, not when it finishes.
+
 ### 10. Keep it alive
 
 - When a UI label/selector changes, update the tour in the same commit.
@@ -199,7 +219,7 @@ The same tour is the demo. For a live demo:
 - [ ] `tour.config.ts` allow-lists complete.
 - [ ] `tours/*.tour` written; `@id` matches filenames.
 - [ ] `tour-data.ts` generated; `--check` passes.
-- [ ] Entry point visible.
+- [ ] Entry point visible（icon-only UI：**🦮 放在主要動作（存檔）旁邊**，`aria-label` + `title` 都有 ✓）.
 - [ ] Full play test passes with `failed.length === 0`.
 - [ ] Settings restored; Esc/replay work.
 - [ ] Selectors use stable ids; async steps use `等頁面`.

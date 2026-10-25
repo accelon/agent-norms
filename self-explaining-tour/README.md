@@ -147,6 +147,38 @@ bun run src/tour/build-tours.ts --config tour.config.ts --check
 
 Then play it in a real browser. A full-play test is strongly recommended: click through every scene, assert `tourState().failed` is empty, and check the spotlight actually overlaps the target.
 
+## Entry point
+
+A tour nobody finds is not a tour. Two shapes work:
+
+| UI | Entry |
+|---|---|
+| has a menu / About dialog | a labelled item: 「操作導覽」 / "Take a tour" |
+| **icon-only toolbar** | **🦮 right after the primary action** (usually save) |
+
+For the icon form:
+
+```html
+<button id="tourEntry" class="iconbtn" title="操作導覽（跟著做一次就會用）"
+        aria-label="操作導覽">🦮</button>
+```
+
+* Keep `id="tourEntry"` — tests, the adapter and the first-run hint all bind to it.
+* `aria-label` + `title` are both required: an emoji-only button has no text name.
+* Same size/style as the neighbouring icon buttons; keep the emoji at the icon font size.
+* ❌ `▶` / `🎬` / `?` — they read as "play a demo" or "help page" and get skipped.
+* ❌ a text label beside it — one text link in an icon row reads as a different kind of control.
+* Put it **next to the action the user already uses**, not in a settings submenu.
+
+Why a dog: it is the one glyph that says *someone will lead you step by step* without words,
+it is not already taken by "play", "help" or "settings", and it is memorable after one visit.
+Like a guide dog at a crossing: it does not explain the route, it walks it with you.
+
+**First run.** If the user has never started the tour, one line is enough
+("第一次用？按右邊的 🦮 一分鐘走一遍") — a toast, an empty-state hint, or a highlight.
+Do **not** auto-start the tour on load: it steals the first impression and the user cannot
+read the screen underneath. Persist "seen" as soon as the tour starts, not when it finishes.
+
 ## DSL
 
 Header: `@id`, `@title`, `@intro`, `@require`.
