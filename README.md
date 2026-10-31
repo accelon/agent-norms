@@ -13,6 +13,14 @@ Reusable norms and modules for Yap's local tools.
 | [`lossless-simplified/`](lossless-simplified/) | Reusable TypeScript module for **lossless Traditional → Simplified display conversion** |
 | [`self-explaining-tour/`](self-explaining-tour/) | Dependency-free guided tours: `.tour` DSL, compiler, spotlight player, shell, example |
 | [`skills/self-explaining-tour/`](skills/self-explaining-tour/SKILL.md) | Agent skill: when/how to add a self-explaining tour to a new app |
+| [`corpus-to-mobile-skills.md`](corpus-to-mobile-skills.md) | Playbook: turn a domain's source corpus into **five WeChat long images** (three-layer architecture, cost/token model, technical advantages) |
+| [`corpus-to-mobile/`](corpus-to-mobile/) | Reusable CSS, page-05 template, glyph image, and trim script for the five-image series |
+| [`tcm/`](tcm/) | Finished TCM example: five-image series, A4 one-pager, long scroll, token model, HTML sources |
+| [`buddhist-study/`](buddhist-study/) | Five-image Buddhist knowledge-base series (01–05), with cost-structure pie, title “人機圓夢”, and technical advantages |
+| [`huayen-study/`](huayen-study/) | Four-page Huayen Dictionary proposal: vertical market application built on the Buddhist knowledge base, with patriarch and contemporary-practitioner tracks |
+| [`skills/corpus-to-mobile/`](skills/corpus-to-mobile/SKILL.md) | Agent skill trigger for 「做《X》知識庫」; points at the playbook and guardrails |
+| [`scrap-parse-skill/`](scrap-parse-skill/SKILL.md) | Web book → structured data: recon, label-based sectioning, junk-stop list, retry fetch, verification (worked example: moshuyuan.com 金剛經) |
+| [`docx-svg-skill.md`](docx-svg-skill.md) | Word 圖表 → SVG → adb：抽圖表（含標題行）、剪掉用不到的 zip 零件、Word 批次轉 PDF、PyMuPDF 轉 SVG（文字保持文字）、打包 resources 與 `<圖 t="圖版">` 的完整做法與症狀對照表 |
 
 ## How consumers use it
 
@@ -48,6 +56,17 @@ A guided tour system for users who do not read manuals, and a repeatable demo sc
 - [`skills/self-explaining-tour/SKILL.md`](skills/self-explaining-tour/SKILL.md) — the agent workflow (read this first when adding a tour).
 - Copy the folder into the app; paste `shell.html`/`shell.css`; implement `TourApp`; write `tour.config.ts` + `tours/*.tour`; run the compiler with `--check`.
 - No npm dependencies. The tour data is compiled to base64 and embedded, so single-file/`file://` builds still work.
+
+### `corpus-to-mobile`
+
+A playbook for **「做《X》知識庫」→ 五張 1080 寬微信長圖**.
+
+- Read [`corpus-to-mobile-skills.md`](corpus-to-mobile-skills.md) first; it has the five-page copy templates, the cost/token model, and the acceptance checklist.
+- Copy `corpus-to-mobile/series.css`, `05-tech.html`, `zhaocaijinbao.png`, and `trim_one.py` into the project's `build/series/`.
+- Write `01.html`–`05.html` (01–04 are domain-specific; 05 is the technical moat and mostly unchanged), render with Edge headless at 1080 px, then trim/JPEG with Pillow.
+- Output names: `{{領域}}知識庫-01-三層架構.jpg` … `-05-技術優勢.jpg`.
+- Four-page request: write 01–04 only, set footers `/ 04`, and leave 05 for reuse.
+- Finished example: [`tcm/`](tcm/) — five images, A4 one-pager, long scroll, token model, and the HTML sources.
 
 ### `adb-converter` sync
 
