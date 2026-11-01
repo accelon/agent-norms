@@ -21,6 +21,8 @@ Reusable norms and modules for Yap's local tools.
 | [`skills/corpus-to-mobile/`](skills/corpus-to-mobile/SKILL.md) | Agent skill trigger for 「做《X》知識庫」; points at the playbook and guardrails |
 | [`scrap-parse-skill/`](scrap-parse-skill/SKILL.md) | Web book → structured data: recon, label-based sectioning, junk-stop list, retry fetch, verification (worked example: moshuyuan.com 金剛經) |
 | [`docx-svg-skill.md`](docx-svg-skill.md) | Word 圖表 → SVG → adb：抽圖表（含標題行）、剪掉用不到的 zip 零件、Word 批次轉 PDF、PyMuPDF 轉 SVG（文字保持文字）、打包 resources 與 `<圖 t="圖版">` 的完整做法與症狀對照表 |
+| [`multilingual-term.md`](multilingual-term.md) | 漢語—外語術語抽取：`<术 sk="…">漢詞</术>` 的匹配、詞界、停止字、已知限制與驗證（ys y2adb 實作） |
+| [`writing-skill.md`](writing-skill.md) | 文風指南：從 1995–2025 的論文與講稿抽出的寫作規範——三種語域、長句節奏、詞表與禁用詞、比喻庫、四種骨架、交付檢查清單 |
 
 ## How consumers use it
 

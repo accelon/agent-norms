@@ -44,6 +44,7 @@
 - 不要假設使用者有管理員權限；預設**按使用者**安裝／ portable，資料寫 `%LocalAppData%` 或 `%AppData%`。
 - 不要假設路徑是 ASCII、沒有空格、少於 260 字元，或檔名大小寫有別。
 - macOS／Linux 是加值，不是第一輪的驗收阻擋；跨平台細節另看 wails3-pitfalls §6。
+- 已安裝Edge。注意PowerShell 坑很多。
 
 ### 1.2 Bun + TypeScript
 
