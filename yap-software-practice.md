@@ -99,7 +99,7 @@
 
   | 特性 | 最早支援 | 沒有時的後果 | 對策 |
   |---|---|---|---|
-  | `DecompressionStream` | iOS 16.4 | 單檔 gzip 內嵌資料解不開，整頁空白 | 內嵌純 JS inflate（本 repo 的 `build/gunzip.js` 是範例） |
+  | `DecompressionStream` | iOS 16.4 | 單檔 gzip 內嵌資料解不開，整頁空白 | 內嵌純 JS inflate（範例：zhu-combined 的 `build/gunzip.js`，約 10KB 純 ES5） |
   | `overflow: clip` | iOS 16.0 | sticky 標題列失效，頁面仍可讀 | 可接受就退化，否則用 `@supports` 調版面 |
   | `inset` | iOS 14.1 | 絕對定位位置跑掉 | 補 `top`／`right`／`bottom`／`left` |
   | `Array.prototype.at`、`structuredClone`、`:has()` | iOS 15.4 | TypeError／樣式失效 | 改用相容寫法 |
