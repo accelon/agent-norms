@@ -33,6 +33,7 @@
 | 簡體顯示 | 保持原樣（預設）／無損簡體／強制簡體 | **只影響顯示**，索引與搜尋仍在原文 |
 | 字型 | 系統字型堆疊，無 web font | Windows 以 Microsoft JhengHei／YaHei 為主 |
 | 測試 | 瀏覽器先行；exe 只在發佈前跑 | 改了 UI 不必重建 exe |
+| 瀏覽器基線 | **iOS 16 / Safari 16**（含微信 WKWebView） | 低於此才退出支援，且要給可讀提示；缺的 API 一律附 fallback |
 
 ---
 
@@ -89,6 +90,25 @@
 - 日誌不印檔案內容、不印憑證、不印完整家目錄；需要時遮罩。
 
 ---
+
+### 1.7 瀏覽器基線：iOS 16 不算舊機
+
+- **底線是 iOS 16 / Safari 16**，包含 iOS 微信的 WKWebView（微信在 iOS 上用的就是系統內核）。iPhone 8／X 及之後都可以升到 16.7 以上，這批機器在中文圈仍大量在用，**不能當成「太舊」放生**；真正要退出的只有 iOS 15 及更早（iPhone 6s／7／SE 一代）。
+- **只用 iOS 16 沒有的 API，就必須有 fallback 或 polyfill。**「請換新版 Chrome／Safari」不是答案；更糟的是默默空白。
+- 常見分界（實戰整理）：
+
+  | 特性 | 最早支援 | 沒有時的後果 | 對策 |
+  |---|---|---|---|
+  | `DecompressionStream` | iOS 16.4 | 單檔 gzip 內嵌資料解不開，整頁空白 | 內嵌純 JS inflate（本 repo 的 `build/gunzip.js` 是範例） |
+  | `overflow: clip` | iOS 16.0 | sticky 標題列失效，頁面仍可讀 | 可接受就退化，否則用 `@supports` 調版面 |
+  | `inset` | iOS 14.1 | 絕對定位位置跑掉 | 補 `top`／`right`／`bottom`／`left` |
+  | `Array.prototype.at`、`structuredClone`、`:has()` | iOS 15.4 | TypeError／樣式失效 | 改用相容寫法 |
+  | `?.`／`??` | iOS 13.1 | 語法錯誤，整支 script 不執行 | 目標 iOS 16 可放心用；要支援 13 就得轉譯 |
+
+- **核心路徑不要押在單一新 API 上**：資料解壓、影音、字型、檔案讀取，預設就要想「這個能力沒有的時候怎麼辦」。
+- **驗收要做「拿掉能力」的測試**：改到能力相關的程式時，在 DevTools 執行
+  `Object.defineProperty(window,'DecompressionStream',{get(){return undefined}})`（或 `delete window.DecompressionStream`）後重新載入，確認 fallback 真的跑起來、畫面正常；有 iOS 真機就用 iPhone 11 + iOS 16 跑一次。
+- 失敗畫面要寫「怎麼繼續」（換哪個瀏覽器、開哪個連結、回報什麼），不要只寫「不支援」。
 
 ## 2. 開發節奏：HTML 先行，exe 後行
 
@@ -615,6 +635,8 @@ try {
 
 ### 8.1 瀏覽器先行
 
+- **iOS 16 基線**：iPhone（iOS 16）真機跑一次主要流程；沒機器就用 §1.7 的辦法把新 API 拿掉跑一次，當最壞情況驗收。
+
 - 每次改 UI／流程：`bun run tools/build-viewer.ts`，雙擊 `file://` 測。
 - 需要 module／fetch／secure context：local HTTP 測，但正式版仍要能 `file://` 或 Wails 內嵌。
 - 測試用真實中文語料；不要只用 ASCII 假資料。
@@ -715,6 +737,7 @@ try {
 - ❌ 把「簡體」直接套 OpenCC，沒有處理多對一。
 - ❌ 把無損簡體轉換寫回索引／存檔。
 - ❌ 用 emoji 當功能圖示。
+- ❌ 用 iOS 16 沒有的 API，卻沒有 fallback，只給一句「請換瀏覽器」或直接空白。
 - ❌ 只測暗色主題，亮色／護眼放生。
 - ❌ 把顏色寫死在 CSS 規則裡。
 - ❌ 把 `localStorage` 當 file:// 的可靠設定儲存。
