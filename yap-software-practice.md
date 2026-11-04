@@ -13,7 +13,7 @@
 
 > **Canonical**：[agent-norms](https://github.com/accelon/agent-norms) 的 `yap-software-practice.md`；消費端（如 adb-converter）的副本由 `ts/tools/sync-agent-norms.ts` 同步，不要直接改副本。
 
-**目錄**：0 決策表 · 1 技術選擇 · 2 開發節奏 · 3 單檔 HTML · 4 Windows 環境坑 · 5 漢字處理 · 6 無損簡體 · 7 介面風格 · 8 測試 · 9 文件 · 10 檢查表 · 11 反模式
+**目錄**：0 決策表 · 1 技術選擇 · 2 開發節奏 · 3 單檔 HTML · 4 Windows 環境坑 · 5 漢字處理 · 6 無損簡體 · 7 介面風格 · 8 測試 · 9 文件 · 10 檢查表 · 11 反模式 · 12 背景工作
 
 ---
 
@@ -629,6 +629,26 @@ try {
 - <https://github.com/accelon/agent-norms/tree/main/self-explaining-tour>
 - <https://github.com/accelon/agent-norms/blob/main/skills/self-explaining-tour/SKILL.md>
 
+### 7.11 MVP／示範 UI 一律深色底
+
+> 2026-11-04 作者指示（原 `D:\agent-norms\ui.md`，已併入本節）：作者眼睛不好，
+> **每個 MVP／示範 UI 都要深色底**，不要淺色。
+
+- 適用：一次性 demo、MVP、要截圖給人看的畫面、投影片用的 HTML。
+- 不適用（照 §7.1）：長期使用的閱讀器／工具仍預設暗色，並可切亮色／護眼。
+- 例外：匯出成檔案（docx／xlsx）或紙本用的東西不受此限。
+
+| 用途 | 色 |
+|---|---|
+| 背景 | `#141414` |
+| 面板 | `#1b1b1b` |
+| 主文字 | `#ddd` |
+| 次要文字／段號 | `#888` |
+| 邊框 | `#333` |
+| hover 淡底 | `#2a2f3a` |
+| 選取／標記 | `#4a3b12` |
+| 強調（規則編號等） | `#f0a6c8` |
+
 ---
 
 ## 8. 測試與驗收
@@ -743,6 +763,44 @@ try {
 - ❌ 把 `localStorage` 當 file:// 的可靠設定儲存。
 - ❌ 假設使用者路徑是 ASCII、少於 260 字元、大小寫有別。
 - ❌ 在使用者沒同意的情況下發佈、簽章、上傳或改安全設定。
+- ❌ 只 kill 外層的 shell／job，留下 bun／node／測試瀏覽器／exe 孤兒在背景跑。
+- ❌ 測試或 dev server 用完不關，讓它過夜（作者 2026-11-04：風扇一直吹）。
+
+---
+
+## 12. 背景工作與行程（所有工作區）
+
+> 2026-11-04 作者指示：**不要讓背景工作留著跑**。這條對所有工作區有效，不只前端。
+
+背景工作包括：`bun run tools/dev-serve.ts`、CDP／瀏覽器測試、下載／轉檔長工作、
+`accelon26.exe` 測試、任何 `Bun.spawn` 子行程。
+
+1. **起工作前先想清楚**：能前景跑完就前景跑；真的需要背景才起，並記下 job id／PID。
+2. **一定要有 timeout／停止條件**：不要 `while (true)`、不要無上限重試、不要 sleep 等結果。
+3. **收工前連子行程一起收**：
+   - Windows 上 `Stop-Process -Id <pwsh>` **不會**殺它的子行程；用
+     `taskkill /PID <pid> /T /F`，或逐一找出子行程再殺。
+   - `job_kill` 只保證外層 job；**還是要另外檢查** bun／node／瀏覽器／exe。
+4. **回報前檢查**（PowerShell）：
+
+```powershell
+job_list   # 你自己的背景 job
+Get-CimInstance Win32_Process -Filter "Name='bun.exe'" |
+  Select-Object ProcessId,ParentProcessId,CreationDate,CommandLine
+Get-CimInstance Win32_Process -Filter "Name='node.exe'" |
+  Select-Object ProcessId,ParentProcessId,CreationDate,CommandLine
+Get-Process accelon26 -ErrorAction SilentlyContinue
+```
+
+5. **測試瀏覽器**：CDP 測試用專用 `--user-data-dir=...build/...`，跑完要
+   `proc.kill()`／關掉整個行程樹，並刪掉暫存 profile；不要留下十幾個 headless Chrome。
+6. **dev server**：只有使用者明說要留才留；留著就要在回報裡寫清楚 PID／port／停止指令。
+   不要同時起第二個 server 佔同一個 port。
+7. **「很多 bun」通常不是單一 bug**：先看 command line 是哪個工作區、哪支腳本；
+   再看 parent 是否已死（孤兒）。不要直接殺不明來源的 `node`／瀏覽器——先確認是不是
+   別的 workspace 或使用者的程式。
+
+驗收：回報前 `Get-Process bun,accelon26` 應該沒有殘留；若刻意保留 dev server，要明確說明。
 
 ---
 

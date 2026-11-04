@@ -8,8 +8,13 @@ Reusable norms and modules for Yap's local tools.
 
 | Path | What it is |
 |---|---|
-| [`yap-software-practice.md`](yap-software-practice.md) | Windows / Bun / single-file HTML / Wails3 defaults; Windows UTF-8 & Chinese pitfalls; UI themes; lossless Simplified Chinese; browser baseline (**iOS 16+**) |
+| [`AGENTS.md`](AGENTS.md) | 這裡的 agent 規則：**開新工作區從這裡開始**、改規範的規矩、工作紀律 |
+| [`yap-software-practice.md`](yap-software-practice.md) | Windows / Bun / single-file HTML / Wails3 defaults; Windows UTF-8 & Chinese pitfalls; UI themes (**MVP/demo UI dark-only, §7.11**); lossless Simplified Chinese; browser baseline (**iOS 16+**); **background jobs / process cleanup (all workspaces)** |
 | [`wails3-pitfalls.md`](wails3-pitfalls.md) | Wails3-specific pitfalls: syso, WebView2, SmartScreen, windows/DPI, updater |
+| [`new-workspace.md`](new-workspace.md) | **開新工作區的 canonical 入口**：要不要開、決策表、模板、骨架、開工前必讀、記帳、交接、停用 |
+| [`new-workspace-AGENTS.md`](new-workspace-AGENTS.md) | 新工作區 `AGENTS.md` 通用模板（填 `{{NAME}}`／`{{TITLE}}`／`{{PARENT}}`／`{{OUTPUT}}`…） |
+| [`new-adb-workspace.md`](new-adb-workspace.md) | adb 資料庫專用的開區步驟（`dbname`、`D:\accelon3`、版本紀錄、`publish-adb.ts`） |
+| [`new-adb-AGENTS.md`](new-adb-AGENTS.md) | adb 工作區 `AGENTS.md` 模板（要回母區 `adb-converter` 讀 know-how） |
 | [`lossless-simplified/`](lossless-simplified/) | Reusable TypeScript module for **lossless Traditional → Simplified display conversion** |
 | [`self-explaining-tour/`](self-explaining-tour/) | Dependency-free guided tours: `.tour` DSL, compiler, spotlight player, shell, example |
 | [`skills/self-explaining-tour/`](skills/self-explaining-tour/SKILL.md) | Agent skill: when/how to add a self-explaining tour to a new app |
@@ -25,6 +30,17 @@ Reusable norms and modules for Yap's local tools.
 | [`writing-skill.md`](writing-skill.md) | 文風指南：從 1995–2025 的論文與講稿抽出的寫作規範——四種語域（含抒情散文 D）、長句節奏、詞表與禁用詞、比喻庫、骨架、交付檢查清單；抒情文的留白原則見 §2.8 |
 
 ## How consumers use it
+
+### New workspace
+
+**2026-11-04 作者指示：「開新工作區」的做法與模板一律在 agent-norms。**
+
+- 開新工作區時，**在這裡開 session**（工作目錄 `D:\2026\agent-norms`），照 [`AGENTS.md`](AGENTS.md) 與這節做。
+- 從 [`new-workspace.md`](new-workspace.md) 開始；不要從某個專案工作區的 `docs/` 複製。
+- 一般專案用 [`new-workspace-AGENTS.md`](new-workspace-AGENTS.md)；
+  adb 資料庫用 [`new-adb-workspace.md`](new-adb-workspace.md) ＋ [`new-adb-AGENTS.md`](new-adb-AGENTS.md)。
+- 專案工作區（如 `adb-converter`）只留一行指標指回這裡，避免兩份不同步。
+- 新工作區的 `AGENTS.md` 會要求它回來讀本 repo 與母工作區的紀律。
 
 ### Docs
 
