@@ -11,6 +11,8 @@ Reusable norms and modules for Yap's local tools.
 | [`AGENTS.md`](AGENTS.md) | 這裡的 agent 規則：**開新工作區從這裡開始**、改規範的規矩、工作紀律 |
 | [`yap-software-practice.md`](yap-software-practice.md) | Windows / Bun / single-file HTML / Wails3 defaults; Windows UTF-8 & Chinese pitfalls; UI themes (**MVP/demo UI dark-only, §7.11**); lossless Simplified Chinese; browser baseline (**iOS 16+**); **background jobs / process cleanup (all workspaces)** |
 | [`wails3-pitfalls.md`](wails3-pitfalls.md) | Wails3-specific pitfalls: syso, WebView2, SmartScreen, windows/DPI, updater |
+| [`shutonggui.md`](shutonggui.md) | **書同軌**：語義分句、最小切分、轍號（`rut id`，*rut unified text*；承接古文之軌跡）與 crosswalk 的指導原則 |
+| [`incubator.md`](incubator.md) | **官網孵化區發布規範**：進駐門檻、繁簡（`t2s` 無損）、背景與主題（紙色／暗色）、`deploy/incubator.json`、部署與生命週期 |
 | [`new-workspace.md`](new-workspace.md) | **開新工作區的 canonical 入口**：要不要開、決策表、模板、骨架、開工前必讀、記帳、交接、停用 |
 | [`new-workspace-AGENTS.md`](new-workspace-AGENTS.md) | 新工作區 `AGENTS.md` 通用模板（填 `{{NAME}}`／`{{TITLE}}`／`{{PARENT}}`／`{{OUTPUT}}`…） |
 | [`new-adb-workspace.md`](new-adb-workspace.md) | adb 資料庫專用的開區步驟（`dbname`、`D:\accelon3`、版本紀錄、`publish-adb.ts`） |
