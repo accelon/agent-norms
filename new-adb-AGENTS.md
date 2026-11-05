@@ -83,6 +83,12 @@ from han import HAN, han_chars, han_count
 
 - 不要改母工作區的閱讀器程式（`ts/src/accelon26/*`）；共用 helper 的 bug 回母區修。
 - 不要自寫漢字範圍、頁座標、VA 規則、缺字公式。
+- **不要為了「找資料」掃上層目錄或整個母工作區**（`D:\2026\`、`D:\accelon3`、`D:\`）：
+  grep／find／`Get-ChildItem -Recurse` 會掃到幾十 GB 的語料、`.adb`、`node_modules`，
+  跑很久又多是雜訊。共用程式與規則的位置本檔 §0、§2 已經寫明，直接讀那幾個檔；
+  要在母區找東西，先讀 `D:\2026\adb-converter\docs\README.md` 的索引，
+  真的需要再指定**單一檔案**讀
+  （2026-11-05 作者指示：某工作區 grep `D:\2026\` 等很久，很惱火）。
 - 不要同時由兩個工作區重建同一個 adb（會互相覆蓋；fuyan 發生過）。
 - 不要把 `.adb`、`.zip` 等產物 commit 進 git；成品在 `D:\accelon3`。
 - 不要在未經作者指示時發布官網 exe／改 `deploy/adb-status.json`。
