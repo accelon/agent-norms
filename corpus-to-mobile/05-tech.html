@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>{{領域}}知識基礎設施 05 技術優勢</title>
+<link rel="stylesheet" href="series.css">
+</head>
+<body>
+<div class="page">
+  <div class="head">
+    <div>
+      <div class="series">{{領域}}知識基礎設施 · 05</div>
+      <h1>技術優勢</h1>
+      <div class="sub">三個門檻，我們已經跨過。</div>
+    </div>
+    <div class="no">05</div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="tech-card green">
+    <div class="tech-top"><div class="tech-no">01</div><div><div class="tech-t">組字專利</div><div class="tech-k">Unicode 沒有定義的{{領域}}罕用字</div></div></div>
+    <div class="tech-d">{{領域}}專有名詞、異體字、地方術語，常遇到字型裡沒有的字。我們用「拼形序」把字拆成部件與位置，遞迴組出字形——<b>中國發明專利 201610984608.1</b>。</div>
+    <div class="example">
+      <div>寶 − 缶 + 支　→　<span>把「寶」的「缶」換成「支」</span></div>
+      <div>峰 − 夆 + 電雨水　→　<span>再遞迴一層</span></div>
+    </div>
+    <div class="glyph-row">
+      <div class="glyph-text">
+        <div class="glyph-title">招 + 財 + 進 + 寶</div>
+        <div class="glyph-sub">→ 依版面排列，合成一個合體字。</div>
+      </div>
+      <figure class="glyph-fig">
+        <img src="zhaocaijinbao.png" alt="招財進寶合體字">
+        <figcaption>招財進寶（合體字）</figcaption>
+      </figure>
+    </div>
+    <div class="tech-note">不是造一個新碼位，而是把「怎麼組」記下來；<br>可逆、可搜、可移植。<br>字庫：98,701 個 Unicode 漢字、191,727 個字形，離線 4.4 MB（gz 2.2 MB）。</div>
+  </div>
+
+  <div class="tech-card gold">
+    <div class="tech-top"><div class="tech-no">02</div><div><div class="tech-t">大規模紙書標記與處理</div><div class="tech-k">不是 demo，是 47 億字古籍</div></div></div>
+    <div class="tech-d">把紙書變成可定址、可驗證的文字，要處理頁、行、版本、異體字與索引。我們已經在大型古籍語料上跑通：</div>
+    <div class="metric-grid">
+      <div class="metric"><b>93</b><span>個古籍庫</span></div>
+      <div class="metric"><b>47 億</b><span>字</span></div>
+      <div class="metric"><b>690 萬</b><span>大正藏行數</span></div>
+      <div class="metric"><b>6,357</b><span>組 T↔K 卷對照</span></div>
+    </div>
+    <div class="tech-note">adb：13j 逐位元組重建；<br>索引 9,516／7,256,439 逐位置對拍。<br>tripitaka：1,474 部經、6,357 卷、4,590 萬字；位置對照資產 1.54 MB。<br>語料以佛典為主；同一套管線可直接用於{{領域}}典籍。</div>
+  </div>
+
+  <div class="tech-card ink">
+    <div class="tech-top"><div class="tech-no">03</div><div><div class="tech-t">巢狀探索</div><div class="tech-k">讓入門者走進複雜知識體系</div></div></div>
+    <div class="tech-d">{{領域}}的難，不是沒有資料，是資料太深。<br><b>分離標記</b>（standoff markup）<br>把文字與標註分開：<br>每個名詞就地展開，再展開；<br>讀者自己決定讀多深。</div>
+    <div class="nest">
+      <div class="nest-row"><span class="chip">{{例子}}</span></div>
+      <div class="nest-row ind1"><span class="nest-arrow">↳</span><span class="chip">點「{{關鍵詞}}」</span><span class="nest-arrow">→</span><span class="chip">展開一層</span></div>
+      <div class="nest-row ind2"><span class="nest-arrow">↳</span><span class="chip">點「{{來源}}」</span><span class="nest-arrow">→</span><span class="chip">經典原文</span></div>
+    </div>
+    <div class="tech-note">目前 16 科、1,831 條、2,322 個連結；<br>展開深度 6 層，單條通常 30–120 字。<br>展開路徑以 0.2.1 表示；同一名詞在不同位置互不干擾。</div>
+  </div>
+
+  <div class="quote">
+    <p>字打得出來，文對得準，讀者走得進去。<br>這才是完整的「可驗證知識」。</p>
+    <small>專利、語料管線、互動格式，三層都不是買得到的。</small>
+  </div>
+
+  <footer>
+    <div><b>{{領域}}知識基礎設施</b> · 05 / 05</div>
+    <div>技術優勢</div>
+  </footer>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

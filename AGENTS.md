@@ -20,6 +20,9 @@
 
 ## 2. 這裡放什麼、不放什麼
 
+跨專案的**資料模型原則**也放這裡：`D:\2026\agent-norms\shutonggui.md`（[`shutonggui.md`](shutonggui.md)）（書同軌：句級地址、最小切分、轍號、crosswalk）。
+發布到官網孵化區的規範在 [`incubator.md`](incubator.md)（門檻、繁簡、背景與主題、交付、部署）；各工作區的 `AGENTS.md` 只留鏈結。
+
 放：跨專案可重用的**規範**（`yap-software-practice.md`、`wails3-pitfalls.md`、`writing-skill.md`…）、
 可重用的**模組**（`lossless-simplified/`、`self-explaining-tour/`、`corpus-to-mobile/`）、
 以及開新工作區的模板。
